@@ -1,0 +1,6 @@
+@Net8_WebApi_HostAddress = http://localhost:5065
+
+GET {{Net8_WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

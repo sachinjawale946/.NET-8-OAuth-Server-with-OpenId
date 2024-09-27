@@ -1,0 +1,51 @@
+﻿@model Net8_OAuthWithOpenId.OauthRequest.OpenIdConnectLoginRequest
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>NCPDP Login</h1>
+
+<div class="row">
+    @*  @foreach (var i in Model.RequestedScopes)
+    {
+    <p>@i</p>
+    }
+    *@
+    <div class="col-12">
+        <form asp-action="Login" asp-controller="Home" method="post">
+            <input type="hidden" asp-for="RedirectUri" />
+            <input type="hidden" asp-for="Code" />
+            <input type="hidden" asp-for="Nonce" />
+
+            @for (int i = 0; i < Model.RequestedScopes.Count; i++)
+            {
+                <input type="hidden" asp-for="RequestedScopes[i]" />
+            }
+
+
+            <div class="col-md-6">
+                <label>User Name</label>
+                <input type="text" asp-for="UserName" class="form-control"
+                       style="margin-top:5px" />
+            </div>
+
+            <div class="col-md-6">
+                <label style="margin-top:5px">Password</label>
+                <input type="password" asp-for="Password" class="form-control"
+                       style="margin-top:5px" />
+            </div>
+
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="col-md-6">
+                    <label style="color:red">@ViewBag.ErrorMessage</label>
+                </div>
+            }
+
+            <div class="col-md-6" style="margin-top:20px;float:left">
+                <input type="submit" value="Login" class="btn btn-primary" style="width:80px;" />
+            </div>
+        </form>
+    </div>
+</div>
